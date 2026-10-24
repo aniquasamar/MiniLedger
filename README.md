@@ -50,15 +50,20 @@ Install Node.js LTS, PostgreSQL, and (for mobile testing) Expo Go on your phone 
    npm install
    ```
 2. Copy `.env.example` to `.env` and update `DATABASE_URL` with your PostgreSQL username and password. Replace `JWT_SECRET` with a long random value.
-3. Create the database in PostgreSQL if it does not exist:
+3. Create the PostgreSQL database if it does not already exist:
+
    ```sql
    CREATE DATABASE miniledger;
    ```
-4. Generate the Prisma client and create the tables:
+
+4. Generate the Prisma client and apply the committed migrations:
+
    ```bash
    npm run db:generate
-   npm run db:migrate -- --name init
+   npx prisma migrate deploy
    ```
+
+   Run these commands from the `backend/` directory.
 5. Start the API:
    ```bash
    npm run dev
